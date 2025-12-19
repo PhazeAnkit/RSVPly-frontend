@@ -1,22 +1,25 @@
+"use client";
+
 import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
-import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/Navbar";
+import Providers from "./providers";
+import { useThemeStore } from "@/store/theme.store";
+import { useEffect } from "react";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { theme } = useThemeStore();
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   return (
     <html lang="en">
-      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
-        <ThemeProvider>
-          <AuthProvider>
-            <Navbar />
-            <main className="container mx-auto p-4">{children}</main>
-          </AuthProvider>
-        </ThemeProvider>
+      <body>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
