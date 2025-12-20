@@ -5,6 +5,7 @@ import { Moon, Sun, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useThemeStore } from "@/store/theme.store";
 import { useAuthStore } from "@/store/auth.store";
+import CreateEventDialog from "../events/CreateEventDialog";
 
 export default function Navbar() {
   const { theme, toggleTheme } = useThemeStore();
@@ -30,6 +31,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <CreateEventDialog />
           <Button
             variant="ghost"
             size="icon"

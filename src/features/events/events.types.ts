@@ -13,11 +13,10 @@ export type Event = {
 export type EventStatus = "OPEN" | "FULL" | "CLOSED" | "JOINED" | "CREATED";
 
 export type CreateEventPayload = {
-  eventCapacity: number;
-  bookedCount: number;
+  description: string;
   eventTime: string;
   bookingClose: string;
-  description: string;
+  eventCapacity: number;
   location?: string;
   meetingLink?: string;
 };

@@ -1,9 +1,8 @@
 "use client";
 
 import { useDashboard } from "@/features/dashboard/dashboard.hooks";
-import { getDashboardCounts } from "@/lib/dashboard.utils";
-import StatCard from "@/components/dashboard/StatCard";
 import EventCard from "@/components/events/EventCard";
+import StatCard from "@/components/dashboard/StatCard";
 
 export default function DashboardPage() {
   const { data, isLoading, isError } = useDashboard();
@@ -11,14 +10,12 @@ export default function DashboardPage() {
   if (isLoading) return <p>Loading dashboard...</p>;
   if (isError || !data) return <p>Failed to load dashboard</p>;
 
-  const counts = getDashboardCounts(data.createdEvents, data.joinedEvents);
-
   return (
     <div className="space-y-10">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatCard title="Created Events" value={counts.created} />
-        <StatCard title="Joined Events" value={counts.joined} />
-        <StatCard title="Upcoming Events" value={counts.upcoming} />
+        <StatCard title="Created Events" value={data.counts.created} />
+        <StatCard title="Joined Events" value={data.counts.joined} />
+        <StatCard title="Upcoming Events" value={data.counts.upcoming} />
       </div>
 
       <section>
